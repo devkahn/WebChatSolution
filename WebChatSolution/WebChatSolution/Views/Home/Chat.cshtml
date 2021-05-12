@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Chat";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chat</h2>
+<div class="container">
+    <input type="text" id="message"/>
+    <input type="button" id="sendmessage" value="Send"/>
+    <input type="hidden" id="displayname"/>
+    <ul id="discussion"></ul>
+</div>
+
+@*스크립트 코딩시 사용되는 서브측 허브 클래스명과 각종 메소드명은 소문자로 표기*@
+@section scripts{
+    @*SignalR 기술기반에 클라이언트에서 서버와의 WebSocket 통신을 도와주는 자바스트림트 지원 라이브러리*@
+    <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+    @*경로는 서버에 생선한 각종  Hub. 클래스들과 1:1로 기능이 맵핑되는 Hub 프로시 자바스크립트 파일경로*@
+    <script src="~/signalr/hubs"></script>
+    <script>
+        $(document).ready(function () {
+            //이것을 통해 서버측 Hubs 폴더내에 존재하는 ChatHub 클래스와 통신할 수 있는 Hub Proxy 자바스크립트 라이브러리를 이용해 chatHub 스크립트 객체를 생성
+            //생선된 chat 객체는 서버측 Hubs 폴더내의 ChatHub 클래스와 1:1로 매칭되어 클라이언트측에서 서버측의 ChatHub 클래스와의 통신을 담당합니다.
+            var chat = $.connection.chatHub;
+            //함수는 서버특 ChatHub.cs내 Send 메소드에서 모든 클라이언트에게 메시지를 보내는 broadCating() 스크립트 함수의 기능을 구현하여 서버에서 전달된 이름/메시지정보를 채팅내역에 추가
+            chat.client.broadCasting = function (name, message) {
+                $('#discussion').append('<li><strong>' +
+                    htmlEncode(name) + '</strong>:' + htmlEncode(message) +
+                    '</li>');
+            };
+            $('#displayname').val(prompt('Enter your name :', ''));
+            $('#message').focus();
+            // 클라이언트 Proxy스크립트 통신 객체와 서버측 Hub 클래스가 연결이 완료된 상태에서 메시지발송 버튼을 클릭하면
+            $.connection.hub.start().done(function () {
+                $('#sendmessage').click(function () {
+                    //이놈을 실행시켜 서버측에 ChatHub 클래스에 Send 메소드로 사용자명과 채팅메시지를 송신한다.
+                    chat.server.send($('#displayname').val(),
+                        $('#message').val()); $('#message').val('').focus();
+                });
+            });
+        });
+        function htmlEncode(value) {
+            var encodedValue = $('<div/>').text(value).html();
+            return encodedValue;
+        }
+    </script>
+    }
+
