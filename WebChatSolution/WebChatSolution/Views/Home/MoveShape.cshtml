@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "MoveShape";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles
+{
+    <style>
+        #shape{
+            width:100px;
+            height:100px;
+            background-color:#FF0000;
+        }
+    </style>
+}
+
+<div id="shape"/>
+@section scripts
+{
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.2.js"></script>
+    <script src="~/signalr/hubs"></script>
+    
+
+    <script>
+        $(function () {
+            //화면이 로드된후 서버의 MoveShapeHub.cs의 클라이언트 측 proxy script객체인 moveShapeHub를 생성
+            var moveShapeHub = $.connection.moveShapeHub,
+                $shape = $("#shape"),
+                shapeModel = {
+                    left: 0,
+                    top: 0
+                };
+
+            //서버의 Hub 클래스내 UpdateModel() 메소드에서 클라이언트에 전달하는 모델데이터를 수신할  updateShape 함수의 기능을 구현하여 도형의 위치를 서버에서 전달된 데이터로 위치로 변경조치한다.
+            moveShapeHub.client.updateShape = function (model) {
+                shapeModel = model;
+                $shape.css({ left: model.left, top: model.top });
+            };
+            $.connection.hub.start().done(function () {
+                $shape.draggable({
+                    drag: function () {
+                        shapeModel = $shape.offset();
+                        //드래그 이벤트가 발생하면 클라이언트 상의 동혀의 좌측정보를 받아 서버의 updateModel 메소드에게 도형의 좌표정보모델 데이터값을 전달한다.
+                        moveShapeHub.server.updateModel(shapeModel);
+                    }
+                });
+            });
+        });
+
+    </script>
+
+
+}
+
+

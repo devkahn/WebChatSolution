@@ -29,5 +29,10 @@ namespace WebChatSolution.Controllers
         {
             return View();
         }
+
+        public ActionResult MoveShape()
+        {
+            return View();
+        }
     }
 }
