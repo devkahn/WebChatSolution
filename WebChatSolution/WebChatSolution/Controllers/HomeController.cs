@@ -34,5 +34,11 @@ namespace WebChatSolution.Controllers
         {
             return View();
         }
+
+        public ActionResult Talk()
+        {
+            return View();
+        }
+            
     }
 }

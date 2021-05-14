@@ -157,10 +157,12 @@
     </Compile>
     <Compile Include="Hubs\ChatHub.cs" />
     <Compile Include="Hubs\MoveShapeHub.cs" />
+    <Compile Include="Hubs\TalkHub.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ChatTemplate.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -206,6 +208,51 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Custom\Content\ThemeDefault\style.css" />
+    <Content Include="Custom\Images\chat_progress.gif" />
+    <Content Include="Custom\Images\close.png" />
+    <Content Include="Custom\Images\icon_link.png" />
+    <Content Include="Custom\Images\open.png" />
+    <Content Include="Custom\Images\ThemeDefault\bg_btn.png" />
+    <Content Include="Custom\Images\ThemeDefault\bg_InnerBtn.png" />
+    <Content Include="Custom\Images\ThemeDefault\bg_InnerBtnSub.png" />
+    <Content Include="Custom\Images\ThemeDefault\bg_message_list.png" />
+    <Content Include="Custom\Images\ThemeDefault\bg_message_send.png" />
+    <Content Include="Custom\Images\ThemeDefault\bg_scroll_arrow_down.png" />
+    <Content Include="Custom\Images\ThemeDefault\bg_scroll_arrow_up.png" />
+    <Content Include="Custom\Images\ThemeDefault\bg_scroll_vert_drag.png" />
+    <Content Include="Custom\Images\ThemeDefault\bg_tokmon.png" />
+    <Content Include="Custom\Images\ThemeDefault\btn_close.png" />
+    <Content Include="Custom\Images\ThemeDefault\btn_close_black.png" />
+    <Content Include="Custom\Images\ThemeDefault\donglechat-bg.png" />
+    <Content Include="Custom\Images\ThemeDefault\donglechat_logo.png" />
+    <Content Include="Custom\Images\ThemeDefault\form_checkbox.png" />
+    <Content Include="Custom\Images\ThemeDefault\form_radio.png" />
+    <Content Include="Custom\Images\ThemeDefault\form_select.png" />
+    <Content Include="Custom\Images\ThemeDefault\icon_blueArr.png" />
+    <Content Include="Custom\Images\ThemeDefault\icon_btn_save.png" />
+    <Content Include="Custom\Images\ThemeDefault\icon_chaton.png" />
+    <Content Include="Custom\Images\ThemeDefault\icon_join.png" />
+    <Content Include="Custom\Images\ThemeDefault\icon_manage_member.png" />
+    <Content Include="Custom\Images\ThemeDefault\icon_preference_chat.png" />
+    <Content Include="Custom\Images\ThemeDefault\icon_preference_manager.png" />
+    <Content Include="Custom\Images\ThemeDefault\icon_preference_save.png" />
+    <Content Include="Custom\Images\ThemeDefault\icon_save.png" />
+    <Content Include="Custom\Images\ThemeDefault\icon_save_file.png" />
+    <Content Include="Custom\Images\ThemeDefault\icon_step_next.png" />
+    <Content Include="Custom\Images\ThemeDefault\icon_step_prev.png" />
+    <Content Include="Custom\Images\ThemeDefault\info_upgrade_large.png" />
+    <Content Include="Custom\Images\ThemeDefault\info_upgrade_small.png" />
+    <Content Include="Custom\Images\ThemeDefault\sprite_chat.png" />
+    <Content Include="Custom\Images\ThemeDefault\sprite_preference.png" />
+    <Content Include="Custom\Scripts\AjaxDataHelper.js" />
+    <Content Include="Custom\Scripts\ClevisURL.js" />
+    <Content Include="Custom\Scripts\jquery-1.12.4.min.js" />
+    <Content Include="Custom\Scripts\jquery.cookie.js" />
+    <Content Include="Custom\Scripts\jquery.jscrollpane.min.js" />
+    <Content Include="Custom\Scripts\jquery.mousewheel.js" />
+    <Content Include="Custom\Scripts\jquery.signalR-2.2.1.min.js" />
+    <Content Include="Custom\Scripts\noclickdelay.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -243,6 +290,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Chat.cshtml" />
     <Content Include="Views\Home\MoveShape.cshtml" />
+    <Content Include="Views\Home\Talk.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
